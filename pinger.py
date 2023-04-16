@@ -8,6 +8,7 @@ import binascii
 # noinspection PyUnresolvedReferences
 import pandas as pd
 import warnings
+import numpy as np
 
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
@@ -159,14 +160,14 @@ def ping(host, timeout=1):
     # You should have the values of delay for each ping here structured in a pandas dataframe;
     # fill in calculation for packet_min, packet_avg, packet_max, and stdev
     #delayData =
-    packet_min = response['delay'].min()
-    packet_avg = response['delay'].mean()
-    packet_max = response['delay'].max()
-    stdev = response['delay'].std()
+    packet_min = np.min(delayList)
+    packet_avg = np.mean(delayList)
+    packet_max = np.std(delayList)
+    stdev = np.min(delayList)
 
     vars = pd.DataFrame(columns=['min', 'avg', 'max', 'stddev'])
-    vars = vars.append({'min': str(round(packet_min, 2)), 'avg': str(round(packet_avg, 2)),
-                        'max': str(round(packet_max, 2)), 'stddev': str(round(stdev, 2))},
+    vars = vars.append({'min': float(packet_min), 'avg': float(packet_avg),
+                        'max': float(packet_max), 'stddev': float(stdev)},
                        ignore_index=True)
     print(vars)  # make sure your vars data you are returning resembles acceptance criteria. make sure this is converted into ms
     return vars
