@@ -162,8 +162,8 @@ def ping(host, timeout=1):
     #delayData =
     packet_min = np.min(delayList)
     packet_avg = np.mean(delayList)
-    packet_max = np.std(delayList)
-    stdev = np.min(delayList)
+    packet_max = np.max(delayList)
+    stdev = np.std(delayList)
 
     vars = pd.DataFrame(columns=['min', 'avg', 'max', 'stddev'])
     vars = vars.append({'min': float(packet_min), 'avg': float(packet_avg),
