@@ -140,8 +140,8 @@ def ping(host, timeout=1):
         print("attempt: " and i)
         delay, statistics = doOnePing(dest, timeout)  # what is stored into delay and statistics? check tuples
         delayList.append(delay)
-        response = response.append({'bytes': statistics[0]}, {'rtt': delay},
-                                   {'ttl': statistics[1]}, ignore_index = True)
+        response = response.append({'bytes': statistics[0], 'rtt': delay,
+                                   'ttl': statistics[1]}, ignore_index = True)
         # store your bytes, rtt, and ttle here in your response pandas dataframe. An example is commented out below for vars
         print(delay)
         time.sleep(1)  # wait one second
